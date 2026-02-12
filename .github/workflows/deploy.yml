@@ -1,0 +1,17 @@
+name: CD -Deploiement sur github page
+on: 
+    push: 
+       branch: {"main"}
+jobs: 
+   deploy: 
+      runs-on: ubuntu-latest
+      steps:
+        - name: récupération du code
+          uses: actions/checkout@v3
+
+
+        - name: Déploiement sur github page
+          uses: peaceiris/action-gh-pages@v3
+          with: 
+             github_token: $(secrets.GITHUB_TOKEN)
+             publish_dir: .
