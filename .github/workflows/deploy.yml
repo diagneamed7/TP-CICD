@@ -1,13 +1,22 @@
 name: CD - Deploiement sur github page
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows:
+      - "CI -Vérification html"
+    types:
+      - completed
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: >-
+      ${
+        github.event_name == 'workflow_dispatch' ||
+        (github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main')
+      }
     
 
     steps:
