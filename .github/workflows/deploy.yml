@@ -1,7 +1,8 @@
 name: CD -Deploiement sur github page
 on: 
     push: 
-       branch: {"main"}
+       branches:  
+           - main
 jobs: 
    deploy: 
       runs-on: ubuntu-latest
